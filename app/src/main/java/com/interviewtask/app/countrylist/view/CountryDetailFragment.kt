@@ -1,6 +1,5 @@
 package com.interviewtask.app.countrylist.view
 
-import CountryListRes
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +9,7 @@ import com.ahmadrosid.svgloader.SvgLoader
 import com.google.gson.Gson
 import com.interviewtask.app.R
 import com.interviewtask.app.databinding.FragmentCountryDetailBinding
+import com.interviewtask.app.db.CountryListEn
 
 class CountryDetailFragment : Fragment() {
     private lateinit var binding: FragmentCountryDetailBinding
@@ -28,11 +28,11 @@ class CountryDetailFragment : Fragment() {
     }
 
     private fun init(){
-        val countryData = Gson().fromJson(countryVal, CountryListRes::class.java)
+        val countryData = Gson().fromJson(countryVal, CountryListEn::class.java)
         binding.capitalTv.text = countryData.capital
         binding.nameTv.text = countryData.name
-        binding.currencyTv.text = countryData.currencies[0].name +" "+ countryData.currencies[0].symbol
-        binding.languageTv.text = countryData.languages[0].name
+        binding.currencyTv.text = countryData.name +" "+ countryData.currencySymbol
+        binding.languageTv.text = countryData.language
         binding.populationTv.text = countryData.population.toString()
         SvgLoader.pluck()
             .with(activity)

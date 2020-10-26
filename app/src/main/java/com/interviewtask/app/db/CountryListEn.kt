@@ -4,21 +4,22 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
+
 @Entity(tableName = "country_list")
 data class CountryListEn (
-  @PrimaryKey(autoGenerate = true)
-  val id: Int,
+  @PrimaryKey
+  var id: Int,
   @ColumnInfo(name = "name")
-  val name: String,
+  var name: String,
   @ColumnInfo(name = "capital")
-  val capital: String,
+  var capital: String,
   @ColumnInfo(name = "currency")
-  val currency: String,
+  var currency: String,
   @ColumnInfo(name = "language")
-  val language: String,
+  var language: String,
   @ColumnInfo(name = "flag")
-  val flag: String,
+  var flag: String,
   @ColumnInfo(name = "currency_symbol")
-  val currencySymbol: String,
+  var currencySymbol: String ?= null,
   @ColumnInfo(name = "population")
-  val population: String)
+  var population: String)

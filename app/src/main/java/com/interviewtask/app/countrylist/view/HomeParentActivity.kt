@@ -1,6 +1,5 @@
 package com.interviewtask.app.countrylist.view
 
-import WeatherResponse
 import android.app.ProgressDialog
 import android.content.pm.PackageManager
 import android.location.Location
@@ -19,6 +18,7 @@ import com.interviewtask.app.R
 import com.interviewtask.app.countrylist.Communicator
 import com.interviewtask.app.countrylist.viewmodel.HomeVM
 import com.interviewtask.app.databinding.ActivityMainBinding
+import com.interviewtask.app.weather.model.WeatherResponseModel
 import com.interviewtask.app.weather.view.WeatherDialog
 
 
@@ -49,7 +49,7 @@ class HomeParentActivity : AppCompatActivity(), Communicator {
             callAPI(progressDialog)
         }
         homeVM.response.observe(this,
-            Observer<WeatherResponse> {
+            Observer<WeatherResponseModel> {
                 progressDialog.dismiss()
                 Log.e("Activity", ">>"+Gson().toJson(it))
                 var tempVal = it.main.temp - 273.15;

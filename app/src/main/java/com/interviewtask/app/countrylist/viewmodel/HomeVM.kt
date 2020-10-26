@@ -1,16 +1,16 @@
 package com.interviewtask.app.countrylist.viewmodel
 
-import WeatherResponse
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.gson.Gson
+import com.interviewtask.app.weather.model.WeatherResponseModel
 import com.interviewtask.app.webservice.RetrofitConfig
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
 class HomeVM : ViewModel() {
-    val response = MutableLiveData<WeatherResponse>()
+    val response = MutableLiveData<WeatherResponseModel>()
 
     fun weatherAPICall(lat: String, lng: String){
         val api = RetrofitConfig.createWithHeader()
@@ -25,7 +25,7 @@ class HomeVM : ViewModel() {
         Log.i("VM", "Oops something went wrong", error)
     }
 
-    fun getResponse(response: WeatherResponse) {
+    fun getResponse(response: WeatherResponseModel) {
         Log.i("VM", "Message"+ Gson().toJson(response))
         this.response.value = response
     }
