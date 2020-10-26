@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="countryListVM"
+            type="com.interviewtask.app.countrylist.viewmodel.CountryListVM" />
+
+    </data>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/splash_bg_color"
+        >
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/theme_primary_font_color" />
+
+        <EditText
+            android:id="@+id/searchView"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:fontFamily="@font/josefinsans_light"
+            android:hint="@string/search_hint"
+            android:textColorHint="@color/theme_primary_font_color"
+            android:background="@drawable/search_box_bg"
+            android:drawableRight="@drawable/ic_searching"
+            android:textColor="@color/theme_primary_font_color"
+            android:drawablePadding="5dp"
+            android:padding="10dp"
+            />
+        <androidx.recyclerview.widget.RecyclerView
+            android:paddingTop="10dp"
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+</layout>
