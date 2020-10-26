@@ -1,6 +1,7 @@
 package com.interviewtask.app.countrylist.view
 
 import CountryListRes
+import android.app.ProgressDialog
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -49,11 +50,13 @@ class CountryListFragment : Fragment(), CountryListAdapter.OnItemClickListener {
         countryListVM = ViewModelProviders.of(this).get(CountryListVM::class.java)
         //db = Room.databaseBuilder(activity!!.applicationContext, CountryListDB::class.java, "CountyDB").build()
         //callCountryService()
-        countryListVM.countryListAPICall()
+        val progressDialog = ProgressDialog(activity, R.style.AppCompatAlertDialogStyle)
+        callAPI(progressDialog)
         binding.recyclerView!!.layoutManager = LinearLayoutManager(activity!!.applicationContext)
         countryListVM.response.observe(this,
             Observer<List<CountryListRes>> {
                // Log.e("Fragment", ">>"+ Gson().toJson(it))
+                progressDialog.dismiss()
                 countryList = it
                 adapter = CountryListAdapter(countryList, this.requireActivity(), this)
                 binding.recyclerView!!.adapter = adapter
@@ -130,4 +133,10 @@ class CountryListFragment : Fragment(), CountryListAdapter.OnItemClickListener {
         }
     }*/
 
+    fun callAPI(progressDialog: ProgressDialog){
+        progressDialog.setTitle(getString(R.string.app_name))
+        progressDialog.setMessage("Loading, please wait")
+        progressDialog.show()
+        countryListVM.countryListAPICall()
+    }
 }

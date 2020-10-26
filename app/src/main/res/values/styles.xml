@@ -19,4 +19,10 @@
     <style name="ParentActivityTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:background">@color/titlebar_color</item>
     </style>
+
+    <style name="AppCompatAlertDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="colorAccent">@color/theme_primary_font_color</item>
+        <item name="android:textColorPrimary">@color/theme_primary_font_color</item>
+        <item name="android:background">@color/splash_bg_color</item>
+    </style>
 </resources>

@@ -1,6 +1,7 @@
 package com.interviewtask.app.countrylist.view
 
 import WeatherResponse
+import android.app.ProgressDialog
 import android.content.pm.PackageManager
 import android.location.Location
 import android.os.Bundle
@@ -42,11 +43,14 @@ class HomeParentActivity : AppCompatActivity(), Communicator {
         requestPermission()
         getCurrentLocation()
         loadFragment()
+        val progressDialog = ProgressDialog(this, R.style.AppCompatAlertDialogStyle)
+
         binding.weather.setOnClickListener{
-            homeVM.weatherAPICall(lat, lng)
+            callAPI(progressDialog)
         }
         homeVM.response.observe(this,
             Observer<WeatherResponse> {
+                progressDialog.dismiss()
                 Log.e("Activity", ">>"+Gson().toJson(it))
                 var tempVal = it.main.temp - 273.15;
                 WeatherDialog.showAlert(this, tempVal.toString(), it.weather[0].main, it.main.humidity.toString())
@@ -93,4 +97,10 @@ class HomeParentActivity : AppCompatActivity(), Communicator {
         transaction.commit()
     }
 
+    fun callAPI(progressDialog: ProgressDialog){
+        progressDialog.setTitle(getString(R.string.app_name))
+        progressDialog.setMessage("Loading, please wait")
+        progressDialog.show()
+        homeVM.weatherAPICall(lat, lng)
+    }
 }
